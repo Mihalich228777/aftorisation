@@ -25,35 +25,24 @@ button_sub.onclick = function (){
     }
 
         if(count == 2){
-            var url = "../core/sign_in.php"
-            let data = new FormData()
-            data.append("name", name1)
-            data.append("password", password)
+            var url = "core/sign_in.php"
+            var headers = {
+                'Content-type': 'application/json'
+            }
+            var post = {
+                name: name1,
+                password: password
+            }
+            console.log(JSON.stringify(post))
+            fetch(url, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(post),
+                }).then(response => response.json())
+                .then((data) =>  console.log(data))
             
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {
-                    "name": name1,
-                    "password": password
-                },
-                success: success1,
-              })
-
-               function success1(){
-                window.location.replace(url);
-              } 
-            // fetch(url, {
-            //     method: 'POST',
-            //     body: data
-            // }).then(function(response) {
-            //     document.location = url
-            // }).catch(function(error) {
-            //     console.log("Произошла ошибка.")
-            // });
-        
-
+            
+            
         }
     
 }
