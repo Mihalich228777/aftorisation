@@ -7,7 +7,6 @@ $out = json_decode(file_get_contents('php://input'));
 $name = $out->name;
 $password = $out->password;
 
-echo $name, "<br>", $password;
 
 $for_result = mysqli_query($connect,"SELECT * FROM `users` WHERE `name` = '$name' AND `password` = '$password'");
 if(mysqli_num_rows($for_result) > 0){
